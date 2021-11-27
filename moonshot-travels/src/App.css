@@ -15,10 +15,6 @@ html, body, #root, #root>div {
   }
 }
 
-.App-header {
-
-}
-
 .App-header h1,
 .App-header p {
   font-family: Lato, sans-serif;
@@ -56,6 +52,9 @@ html, body, #root, #root>div {
 
 .AppForm input {
   font-family: Roboto, sans-serif;
+  background-color: #232323;
+  border: 0;
+  color: #3E3E3E;
 }
 
 .AppForm label {
