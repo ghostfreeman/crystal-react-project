@@ -1,12 +1,78 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
 
-function SelectNumeric(props) {
+class SelectNumeric extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: 0 };
+  }
+
+  increment = () => {
+    this.setState({ value: this.state.value + 1});
+  }
+
+  decrement = () => {
+    if (this.state.value !== 0) {
+      this.setState({ value: this.state.value - 1 });
+    }
+  }
+
+  changeHandler = event => {
+    event.persist();
+
+    let value = event.target.value;
+
+    this.setState(prevState => ({
+
+    }))
+  };
+
+  render() {
+    return (
+      <div>
+        <label for={this.props.label}>{this.props.labelName}</label>
+        <button onClick={this.decrement}>-</button>
+        <input type="number" 
+          name={this.props.label} 
+          id={this.props.label} 
+          value={this.state.value}
+          onChange={this.changeHandler}>
+        </input>
+        <button onclick={this.increment}>+</button>
+      </div>
+    );
+  }
+}
+
+class CustomTextField extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: "" };
+  }
+
+  render() {
+    return (
+      <p>
+        <label for={this.props.label}>{this.props.labelName}</label>
+        <div className="formWrapper">
+          <i>
+            <CustomTextFieldIcon iconName={this.props.label} />
+          </i>
+          <input type="text" name={this.props.label} id={this.props.label} placeholder={this.props.placeholder}></input>
+        </div>
+      </p>
+    );
+  }
+}
+
+/* function SelectNumeric(props) {
   return <div>
     <label for={props.label}>{props.labelName}</label>
-    <input type="number" name={props.label} id={props.label}></input>
+    <button>-</button>
+    <input type="number" name={props.label} id={props.label} value="0"></input>
+    <button>+</button>
   </div>
-}
+} */
 
 function PersonIcon(props) {
   return <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,7 +92,7 @@ function PhoneIcon(props) {
   </svg>
 }
 
-function CustomTextField(props) {
+/* function CustomTextField(props) {
   return <p>
     <label for={props.label}>{props.labelName}</label>
     <div className="formWrapper">
@@ -36,22 +102,19 @@ function CustomTextField(props) {
       <input type="text" name={props.label} id={props.label} placeholder={props.placeholder}></input>
     </div>
   </p>
+} */
 
-  function CustomTextFieldIcon(props) {
-    const iconName = props.iconName;
+function CustomTextFieldIcon(props) {
+  const iconName = props.iconName;
 
-    switch (iconName) {
-      case 'person':
-      default:
-        return <PersonIcon />;
-        break;
-      case 'email':
-        return <EmailIcon />;
-        break;
-      case 'phone':
-        return <PhoneIcon />;
-        break;
-    }
+  switch (iconName) {
+    case 'person':
+    default:
+      return <PersonIcon />;
+    case 'email':
+      return <EmailIcon />;
+    case 'phone':
+      return <PhoneIcon />;
   }
 }
 
@@ -64,7 +127,6 @@ function App() {
       </header>
 
       <div className="AppForm">
-        <form action="#" method="post">
 
           <CustomTextField labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
           <CustomTextField labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
@@ -84,7 +146,7 @@ function App() {
               <button>Complete Your Booking</button>
             </div>
           </ul>
-        </form>
+
       </div>
     </div>
   );
