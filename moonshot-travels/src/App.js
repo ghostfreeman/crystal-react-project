@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+const { useEffect, useState } = React;
 
 class SelectNumeric extends React.Component {
   constructor(props) {
@@ -17,8 +18,10 @@ class SelectNumeric extends React.Component {
     }
   }
 
-  changeHandler = event => {
+  changeHandler = (event) => {
     event.persist();
+    this.props.changed();
+    //setValue(event.target.value)
 
     let value = event.target.value;
 
@@ -97,12 +100,25 @@ function CustomTextFieldIcon(props) {
   }
 }
 
-function handleSubmit(e) {
+/* function handleSubmit(e) {
   e.preventDefault();
   console.log("Form Submitted");
-}
+} */
 
 function App() {
+  const [reset, setReset] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted");
+    // TODO Reset the state on all components so everything goes back to 0/Empty somehow
+    setReset(true);
+  };
+
+  const handleChanged = () => {
+    setReset(false);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -111,24 +127,26 @@ function App() {
       </header>
 
       <div className="AppForm">
-        <CustomTextField labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
-        <CustomTextField labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
-        <CustomTextField labelName="Phone" label="phone" icon="Phone" placeholder="Enter your phone number" />
+        <form onSubmit={e => e.preventDefault()}>
+          <CustomTextField labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
+          <CustomTextField labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
+          <CustomTextField labelName="Phone" label="phone" icon="Phone" placeholder="Enter your phone number" />
 
-        <ul>
-          <li>
-            <SelectNumeric labelName="Adults" label="adults" />
-          </li>
-          <li>
-            <SelectNumeric labelName="Kids" label="kids" />
-          </li>
-          <li>
-            <SelectNumeric labelName="Cabin Rooms" label="cabins" />
-          </li>
-          <div className="formSubmit">
-            <button onClick={handleSubmit}>Complete Your Booking</button>
-          </div>
-        </ul>
+          <ul>
+            <li>
+              <SelectNumeric labelName="Adults" label="adults" />
+            </li>
+            <li>
+              <SelectNumeric labelName="Kids" label="kids" />
+            </li>
+            <li>
+              <SelectNumeric labelName="Cabin Rooms" label="cabins" />
+            </li>
+            <div className="formSubmit">
+              <button onClick={handleSubmit}>Complete Your Booking</button>
+            </div>
+          </ul>
+        </form>
       </div>
     </div>
   );
