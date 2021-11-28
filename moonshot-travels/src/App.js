@@ -127,26 +127,24 @@ function App() {
       </header>
 
       <div className="AppForm">
+        <CustomTextField labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
+        <CustomTextField labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
+        <CustomTextField labelName="Phone" label="phone" icon="Phone" placeholder="Enter your phone number" />
 
-          <CustomTextField labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
-          <CustomTextField labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
-          <CustomTextField labelName="Phone" label="phone" icon="Phone" placeholder="Enter your phone number" />
-
-          <ul>
-            <li>
-              <SelectNumeric labelName="Adults" label="adults" />
-            </li>
-            <li>
-              <SelectNumeric labelName="Kids" label="kids" />
-            </li>
-            <li>
-              <SelectNumeric labelName="Cabin Rooms" label="cabins" />
-            </li>
-            <div className="formSubmit">
-              <button>Complete Your Booking</button>
-            </div>
-          </ul>
-
+        <ul>
+          <li>
+            <SelectNumeric labelName="Adults" label="adults" />
+          </li>
+          <li>
+            <SelectNumeric labelName="Kids" label="kids" />
+          </li>
+          <li>
+            <SelectNumeric labelName="Cabin Rooms" label="cabins" />
+          </li>
+          <div className="formSubmit">
+            <button>Complete Your Booking</button>
+          </div>
+        </ul>
       </div>
     </div>
   );
