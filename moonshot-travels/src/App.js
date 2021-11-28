@@ -1,8 +1,53 @@
 import './App.css';
 import React from 'react';
+import ReactDOM from 'react-dom';
+
 const { useEffect, useState } = React;
 
-class SelectNumeric extends React.Component {
+const SelectNumeric = (props) => {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (props.reset) {
+      setValue(0);
+    }
+  }, [props.reset]);
+
+  const increment = () => {
+    setValue((value) => value + 1);
+  };
+
+  const decrement = () => {
+    setValue((value) => value - 1);
+  };
+
+  const changeHandler = (event) => {
+    event.persist();
+    props.changed();
+    setValue(event.target.value);
+    //let value = event.target.value;
+
+    //setValue(prevState => ({
+    //  item: { ...prevState.value, [event.target.value]: value //}
+    //}))
+  };
+  return (
+    <div>
+      <label for={props.label}>{props.labelName}</label>
+      <button onClick={decrement}>-</button>
+      <input
+        type="number"
+        name={props.label}
+        id={props.label}
+        value={value}
+        onChange={changeHandler}
+      ></input>
+      <button onClick={increment}>+</button>
+    </div>
+  );
+};
+
+/* class SelectNumeric extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: 0 };
@@ -45,9 +90,63 @@ class SelectNumeric extends React.Component {
       </div>
     );
   }
+} */
+
+const CustomTextField = (props) => {
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    if (props.reset) {
+      setValue("");
+    }
+  }, [props.reset]);
+
+  const handleChange = (event) => {
+    event.persist();
+    setValue(event.target.value);
+    //props.changed();
+  };
+
+  return (
+    <div>
+      <label for={props.label}>{props.labelName}</label>
+      <input
+        value={value}
+        onChange={handleChange}
+        type="text"
+        name={props.label}
+        id={props.label}
+        placeholder={props.placeholder}
+      ></input>
+    </div>
+  );
 }
 
-class CustomTextField extends React.Component {
+const TextField = (props) => {
+  const [value, setValue] = useState("");
+  useEffect(() => {
+    if (props.reset) setValue("");
+  }, [props.reset]);
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    props.changed();
+  };
+  return (
+    <div>
+      <label for={props.label}>{props.labelName}</label>
+      <input
+        value={value}
+        onChange={handleChange}
+        type="text"
+        name={props.label}
+        id={props.label}
+        placeholder={props.placeholder}
+      ></input>
+    </div>
+  );
+};
+
+/* class CustomTextField extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: "" };
@@ -66,7 +165,7 @@ class CustomTextField extends React.Component {
       </div>
     );
   }
-}
+} */
 
 function PersonIcon(props) {
   return <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
