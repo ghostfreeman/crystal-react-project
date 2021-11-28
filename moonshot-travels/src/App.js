@@ -23,7 +23,7 @@ class SelectNumeric extends React.Component {
     let value = event.target.value;
 
     this.setState(prevState => ({
-
+      item: { ...prevState.value, [event.target.value]: value }
     }))
   };
 
@@ -38,7 +38,7 @@ class SelectNumeric extends React.Component {
           value={this.state.value}
           onChange={this.changeHandler}>
         </input>
-        <button onclick={this.increment}>+</button>
+        <button onClick={this.increment}>+</button>
       </div>
     );
   }
@@ -52,7 +52,7 @@ class CustomTextField extends React.Component {
 
   render() {
     return (
-      <p>
+      <div>
         <label for={this.props.label}>{this.props.labelName}</label>
         <div className="formWrapper">
           <i>
@@ -60,7 +60,7 @@ class CustomTextField extends React.Component {
           </i>
           <input type="text" name={this.props.label} id={this.props.label} placeholder={this.props.placeholder}></input>
         </div>
-      </p>
+      </div>
     );
   }
 }
