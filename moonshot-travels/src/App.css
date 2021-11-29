@@ -1,12 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+@import-normalize;
 
 html, body, #root, #root>div {
-  height: 100%
+  height: 100%;
+
+}
+
+body {
+  background-color: #000;
+  background-image: url("./images/MoonBackgrounds4.png");
+  background-position: 60rem top;
+  background-repeat: no-repeat;
 }
 
 #root {
-  background: -600% top no-repeat url('./images/MoonBackgrounds4.png') #000001;
+  /* background: -600% top no-repeat url('./images/MoonBackgrounds4.png') #000001; */
+  margin: 0 auto;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -18,12 +28,15 @@ html, body, #root, #root>div {
 .App-header h1,
 .App-header p {
   font-family: Lato, sans-serif;
+  text-align: center;
 }
 
 .App-header h1 {
   margin: 0;
   color: #ffffff;
   font-size: 2rem;
+  display: block;
+  margin: 2rem;
 }
 
 .App-header p {
@@ -44,22 +57,53 @@ html, body, #root, #root>div {
   }
 }
 
+.AppForm {
+  margin: 0 15rem;
+}
+
 .AppForm p,
+.AppForm>div,
 .AppForm p>input,
 .AppForm p>label {
   display: block;
+}
+
+.AppForm>div {
+  width: 40rem;
+  margin: 2rem auto;
+}
+
+.AppForm>div i,
+.AppForm>div input {
+  background-color: #232323;
+  display: inline-block;
+}
+
+.AppForm>div i {
+  padding: 1rem;
+  border-right: 1px solid #3E3E3E;
+  border-radius: .5rem 0 0 .5rem;
+}
+
+.AppForm>div input {
+  padding: 1.1rem;
+  border-radius: 0 .5rem .5rem 0;
+  width: 34.8rem;
 }
 
 .AppForm input {
   font-family: Roboto, sans-serif;
   background-color: #232323;
   border: 0;
-  color: #3E3E3E;
+  color: #909090;
 }
 
 .AppForm label {
   font-family: Lato, sans-serif;
-  color: #6E6E6E;
+  color: #909090;
+  display: block;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
 }
 
 .AppForm button {
@@ -70,4 +114,60 @@ html, body, #root, #root>div {
   font-family: Lato, sans-serif;
   text-transform: uppercase;
   color: #ffffff;
+}
+
+.AppForm ul {
+  list-style-type: none;
+  margin: 2rem auto;
+  width: 38rem;
+  padding: 0;
+}
+
+.AppForm ul li {
+  display: inline-block;
+  width: 11rem;
+  margin: 0 1rem;
+}
+
+.AppForm ul li:first-child {
+  margin-left: 0;
+}
+
+.AppForm ul li label {
+  display: block;
+}
+
+.AppForm ul li div.wrapper {
+  background: #232323;
+  border-radius: .5rem;
+}
+
+.AppForm ul li div.wrapper button {
+  border-radius: 1rem;
+  text-align: center;
+  margin: .6rem;
+  font-size: 1.5rem;
+}
+
+.AppForm ul li div.wrapper input {
+  font-size: 1.5rem;
+  width: 3rem;
+  text-align: center;
+}
+
+.AppForm ul li div.wrapper button.decrease {
+  background-color: #000000;
+}
+
+.AppForm ul li div.wrapper button.increase {
+  background-color: #333333;
+}
+
+.AppForm .formSubmit {
+  margin: 4rem auto;
+  width: 13rem;
+}
+
+.AppForm .formSubmit button {
+  padding: 1rem;
 }

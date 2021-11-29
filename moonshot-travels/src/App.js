@@ -17,7 +17,9 @@ const SelectNumeric = (props) => {
   };
 
   const decrement = () => {
-    setValue((value) => value - 1);
+    if (value > 0) {
+      setValue((value) => value - 1);
+    } 
   };
 
   const changeHandler = (event) => {
@@ -29,15 +31,17 @@ const SelectNumeric = (props) => {
   return (
     <div>
       <label for={props.label}>{props.labelName}</label>
-      <button onClick={decrement}>-</button>
-      <input
-        type="number"
-        name={props.label}
-        id={props.label}
-        value={value}
-        onChange={changeHandler}
-      ></input>
-      <button onClick={increment}>+</button>
+      <div className="wrapper">
+        <button className="decrease" onClick={decrement}>-</button>
+        <input
+          type="number"
+          name={props.label}
+          id={props.label}
+          value={value}
+          onChange={changeHandler}
+        ></input>
+        <button className="increase" onClick={increment}>+</button>
+      </div>
     </div>
   );
 };
@@ -121,10 +125,15 @@ const App = () => {
   };
   return (
     <div className="App">
+      <header className="App-header">
+        <h1>Book a trip</h1>
+        <p>An amazing journey is waiting for you and your loved ones! You’re just one step away from a new adventure:</p>
+      </header>
+
       <div className="AppForm">
-        <CustomTextField reset={reset} changed={handleChanged} labelName="Name" label="name" icon="Person" placeholder="Enter your full name" />
-        <CustomTextField reset={reset} changed={handleChanged} labelName="Email" label="email" icon="Email" placeholder="Enter your E-mail addres" />
-        <CustomTextField reset={reset} changed={handleChanged} labelName="Phone" label="phone" icon="Phone" placeholder="Enter your phone number" />
+        <CustomTextField reset={reset} changed={handleChanged} labelName="Your Name" label="name" icon="Person" placeholder="Enter your full name" />
+        <CustomTextField reset={reset} changed={handleChanged} labelName="E-mail Address" label="email" icon="Email" placeholder="Enter your E-mail addres" />
+        <CustomTextField reset={reset} changed={handleChanged} labelName="Phone Number" label="phone" icon="Phone" placeholder="Enter your phone number" />
 
         <ul>
             <li>
@@ -136,10 +145,10 @@ const App = () => {
             <li>
               <SelectNumeric labelName="Cabin Rooms" label="cabins" reset={reset} changed={handleChanged} />
             </li>
-            <div className="formSubmit">
+          </ul>
+          <div className="formSubmit">
               <button onClick={handleSubmit}>Complete Your Booking</button>
             </div>
-          </ul>
       </div>
     </div>
   );
