@@ -70,7 +70,7 @@ body {
 
 .AppForm>div {
   width: 40rem;
-  margin: 2rem auto;
+  margin: 0 auto 2rem;
 }
 
 .AppForm>div i,
@@ -119,14 +119,14 @@ body {
 .AppForm ul {
   list-style-type: none;
   margin: 2rem auto;
-  width: 38rem;
+  width: 40rem;
   padding: 0;
 }
 
 .AppForm ul li {
   display: inline-block;
   width: 11rem;
-  margin: 0 1rem;
+  margin: 0 0 0 2.9rem; /* 0 1rem */
 }
 
 .AppForm ul li:first-child {
